@@ -1,0 +1,1 @@
+﻿ Projeto BetESS Versão 1 (com design patterns), realizado por Bruno Alexandre- a69303 e Ana Almeida- pg25291
