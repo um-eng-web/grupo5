@@ -2,7 +2,8 @@ require "./Odd"
 
 
 class Aposta
-  attr_accessor :fechada
+  attr_reader :ganho
+  attr_accessor :fechada, :resultado
   def initialize(id,id_equipa,escolha,valor,odd_v,odd_e,odd_d,data)
     @id=id
     @id_equipa=id_equipa
@@ -15,7 +16,21 @@ class Aposta
     @ganho
 
   end
-  
+  def cal_ganho
+
+    case @resultado
+      when 1 then if @resultado==@escolha
+                    @ganho=@valor* @odd.odd_v
+                  end
+      when 2 then if @resultado==@escolha
+                      @ganho=@valor* @odd.odd_d
+                  end
+      when 0 then if @resultado==@escolha
+                    @ganho=@valor* @odd.odd_e
+                  end
+    end
+  end
+
 
 
 
