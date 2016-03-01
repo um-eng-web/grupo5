@@ -10,7 +10,7 @@ class Bookie < User
   end
 
 
-  def novo_evento(id_evento)
+  def self.novo_evento(id_evento)
     @eventos_criados.add(id_evento)
   end
 

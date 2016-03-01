@@ -4,13 +4,16 @@ Dir["#{current_folder}**/*.rb"].each {|f| require f}
 class Main
 
   attr_accessor :utilizadores
+  attr_accessor :contador_id_evento
 
+  # método que incializa todas as variáveis e estruturas de dados necessários
   def initialize
     @utilizadores = Hash.new
+    @contador_id_evento = 0
 
   end
 
-
+  # método que apresenta o menu principal do programa
   def menu_principal
     while true do
       puts "************************************************"
@@ -50,6 +53,7 @@ class Main
     end
   end
 
+  # método de login de um Bookie
   def menu_bookie
     p "Insira um email: "
     email=gets.chomp
@@ -61,26 +65,55 @@ class Main
       bookie = @utilizadores[email]
       if bookie.is_a?(Bookie)
         puts "ok"
+        MenuBookie.start
       else
         puts "not ok"
       end
     end
-
-
   end
 
+  # método de login de um Apostador
   def menu_user
-    # code here
+    p "Insira um email: "
+    email=gets.chomp
+    p "Insira a sua palavra passe"
+    pass= gets.chomp
+    unless @utilizadores.key?(email)
+      puts "Não está registado"
+    else
+      apostador = @utilizadores[email]
+      if apostador.is_a?(Apostador)
+        puts "ok"
+      else
+        puts "not ok"
+      end
+    end
   end
 
+  # método de login de um Administrador
   def menu_admin
-    # code here
+    p "Insira um email: "
+    email=gets.chomp
+    p "Insira a sua palavra passe"
+    pass= gets.chomp
+    unless @utilizadores.key?(email)
+      puts "Não está registado"
+    else
+      admin = @utilizadores[email]
+      if admin.is_a?(Admin)
+        puts "ok"
+      else
+        puts "not ok"
+      end
+    end
   end
 
+  # método que imprime todos os utilizadores do sistema
   def print_utilzadores
     @utilizadores.each { |k, v| puts " chave #{k}, Valor #{v.getNome}"}
-
   end
+
+  # método que regista um apostador
   def menu_registar_apostador
     p "************************************************"
     p "*               Registar Apostador             *"
@@ -96,9 +129,17 @@ class Main
     apos = Apostador.new(email,pass,nome,valor)
     @utilizadores[apos.getEmail]=apos
     #print_utilzadores
-
   end
 
+  # método que incrementa o id de um dado evento
+  def self.add_contador_evento
+    @contador_id_evento+=1
+  end
+
+  # método que retorna o id de um dado evento
+  def self.get_contador_evento
+    return @contador_id_evento
+  end
 
 
 
