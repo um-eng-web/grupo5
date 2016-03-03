@@ -1,3 +1,6 @@
+require './Odd'
+require 'array'
+
 class Evento
 
   implements :Observable

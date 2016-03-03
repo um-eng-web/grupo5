@@ -1,7 +1,12 @@
+require './Bookie'
+require './Evento'
+require './Main'
+
 class MenuBookie
 
   def initialize(bookie)
     @bookie=bookie
+    @flag = true
   end
 
   def self.start
@@ -41,6 +46,9 @@ class MenuBookie
       when "7" then
         p "************************************************"
         limpar_nofificacoes
+      when "8" then
+        p "************************************************"
+        @flag = false
 
 
     end
@@ -72,6 +80,8 @@ class MenuBookie
   a = Evento.initialize(Main.get_contador_evento,des,date,odd1,odd2,empate,eq1,eq2)
   Main.add_contador_evento
   @bookie.novo_evento(a.get_id)
+  #bd.addEvento(a.getId(), a);
+  a.add_observer(@bookie)
 
   end
 
