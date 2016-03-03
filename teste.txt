@@ -1,7 +1,4 @@
 <<<<<<< HEAD
 cenas 
 cenas
-
-=======
-ola
->>>>>>> 336cea0903a589f7fa4c567aae7f223585b1ad37
+cenas do branch cenas
