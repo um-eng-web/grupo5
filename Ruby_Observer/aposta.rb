@@ -2,8 +2,10 @@ require "./Odd"
 
 
 class Aposta
+
   attr_reader :ganho
   attr_accessor :fechada, :resultado
+
   def initialize(id,id_equipa,escolha,valor,odd_v,odd_e,odd_d,data)
     @id=id
     @id_equipa=id_equipa
@@ -14,8 +16,48 @@ class Aposta
     @resultado
     @fechada = false
     @ganho
-
   end
+
+  def get_id()
+    @id
+  end
+
+  def get_id_evento()
+    @id_equipa
+  end
+
+  def set_fechada()
+    @fechada = true
+  end
+
+  def get_fechada()
+    @fechada
+  end
+
+  def set_valor(v)
+    @valor = v
+  end
+
+  def set_aposta_user(aposta)
+    @escolha = aposta
+  end
+
+  def get_valor()
+    @valor
+  end
+
+  def get_resultado_aposta()
+    @resultado
+  end
+
+  def set_resultado(res)
+    @resultado = res
+  end
+
+  def get_ganho()
+    @ganho
+  end
+
   def cal_ganho
 
     case @resultado
