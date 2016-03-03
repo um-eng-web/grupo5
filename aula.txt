@@ -1,2 +1,6 @@
 ola
+<<<<<<< HEAD
 ola
+=======
+ola again
+>>>>>>> exercicio1
