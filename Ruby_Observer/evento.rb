@@ -1,11 +1,10 @@
-current_folder = File.expand_path('../', __FILE__) # get absolute directory
-Dir["#{current_folder}**/*.rb"].each {|f| require f}
+require_relative 'odd'
 
-require 'array'
+
 
 class Evento
 
-  implements :Observable
+  #implements :Observable
 
   def self.initialize(id,descricao,data,odd1,odd2,empate,eq1,eq2)
     @id=id
@@ -29,7 +28,7 @@ class Evento
 
   # falta o método notify_observer(resultado)
 
-  def notify_observer_odd()
+  def notify_observer_odd
     @observers.each {|o| o.update_odd(@id)}
   end
 

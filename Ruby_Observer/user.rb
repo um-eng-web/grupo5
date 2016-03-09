@@ -1,5 +1,4 @@
-current_folder = File.expand_path('../', __FILE__) # get absolute directory
-Dir["#{current_folder}**/*.rb"].each {|f| require f}
+
 
 class User
 
@@ -10,27 +9,27 @@ class User
 
   end
 
-  def  getEmail
+  def  get_email
     @email;
   end
 
-  def  setEmail=( email)
+  def  set_email=( email)
     @email = email;
   end
 
-  def  getPassword
+  def  get_password
     @password;
 end
 
-  def  setPassword=(password)
+  def  set_password=(password)
     @password = password;
   end
 
-  def  getNome
+  def  get_nome
     @nome;
   end
 
-  def  setNome=(nome)
+  def  set_nome=(nome)
     @nome = nome;
   end
 end
