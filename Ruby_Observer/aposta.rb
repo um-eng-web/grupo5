@@ -1,5 +1,4 @@
-current_folder = File.expand_path('../', __FILE__) # get absolute directory
-Dir["#{current_folder}**/*.rb"].each {|f| require f}
+
 
 
 
@@ -20,19 +19,19 @@ class Aposta
     @ganho
   end
 
-  def get_id()
+  def get_id
     @id
   end
 
-  def get_id_evento()
+  def get_id_evento
     @id_equipa
   end
 
-  def set_fechada()
+  def set_fechada
     @fechada = true
   end
 
-  def get_fechada()
+  def get_fechada
     @fechada
   end
 
@@ -44,11 +43,11 @@ class Aposta
     @escolha = aposta
   end
 
-  def get_valor()
+  def get_valor
     @valor
   end
 
-  def get_resultado_aposta()
+  def get_resultado_aposta
     @resultado
   end
 
@@ -56,7 +55,7 @@ class Aposta
     @resultado = res
   end
 
-  def get_ganho()
+  def get_ganho
     @ganho
   end
 
