@@ -1,3 +1,5 @@
+require_relative 'bookie'
+
 current_folder = File.expand_path('../', __FILE__) # get absolute directory
 Dir['#{current_folder}/**/*.rb'].each { |f| require f }
 
@@ -32,9 +34,9 @@ class Main
 
       case opt
         when '1' then
-           menu_registar_apostador
+          menu_registar_apostador
         when '2' then
-          puts'************************************************'
+          puts '************************************************'
           puts '1-Admin'
           puts '2-Utilizador Regular'
           puts '3-Bookie'
@@ -47,7 +49,7 @@ class Main
             menu_bookie
           end
         else
-         exit(0)
+          exit(0)
       end
 
     end
@@ -110,7 +112,7 @@ class Main
 
   # método que imprime todos os utilizadores do sistema
   def print_utilzadores
-    @utilizadores.each { |k, v| puts ' chave #{k}, Valor #{v.getNome}'}
+    @utilizadores.each { |k, v| puts ' chave #{k}, Valor #{v.getNome}' }
   end
 
   # método que regista um apostador
@@ -126,7 +128,7 @@ class Main
     pass = gets.chomp
     p 'Insira a quantia para as apostas'
     valor = gets.chomp
-    apos = Apostador.new(email,pass,nome,valor)
+    apos = Apostador.new(email, pass, nome, valor)
     @utilizadores[apos.get_email]=apos
     #print_utilzadores
   end
@@ -142,14 +144,14 @@ class Main
   end
 
 
-
 end
 
 
 #=begin
 menu = Main.new
+book = Bookie.new('raul','123','raul@g.com')
 #book= Bookie.new('raul','123','raul@g.com')
-#menu.utilizadores[book.get_email]=book
+menu.utilizadores[book.get_email]=book
 
 menu.menu_principal
 

@@ -21,6 +21,7 @@ end
 
 
 
+
 #tbookie = Bookie.new("Ze",1234,"ze@gmail.com")
 
 #tbookie.novo_evento(1)
