@@ -129,6 +129,7 @@ class Main
     p 'Insira a quantia para as apostas'
     valor = gets.chomp
     apos = Apostador.new(email, pass, nome, valor)
+
     @utilizadores[apos.get_email]=apos
     #print_utilzadores
   end

@@ -1,15 +1,18 @@
-current_folder = File.expand_path('../', __FILE__) # get absolute directory
-Dir['#{current_folder}**/*.rb'].each {|f| require f}
+require_relative 'evento'
+require_relative 'bookie'
+require_relative 'BetESS'
+require 'time'
 
 
 class MenuBookie
 
   def initialize(bookie)
+
     @bookie=bookie
     @flag = true
   end
 
-  def self.start
+  def start
     p '************************************************'
     p '*                    BOOKIE                    *'
     p '************************************************'
@@ -50,38 +53,35 @@ class MenuBookie
         p '************************************************'
         @flag = false
 
-
     end
-
 
   end
 
-  def self.registar_aposta
-  require 'time'
-  p 'Descrição do Evento'
-  des = gets.chomp
-  p 'Data do evento (dd/MM/yyyy)'
-  str = gets.chomp
-  p 'Hora do evento (HH:mm)'
-  str2 = gets.chomp
-  str = str + ' ' + str2
-  date = Time.parse(str)
-  p 'Nome da equipa 1'
-  eq1 = gets.chomp
-  p 'Nome da equipa 2'
-  eq2 = gets.chomp
-  p 'Odd para a equipa 1'
-  odd1 = gets.chomp
-  p 'Odd para a equipa 2'
-  odd2 = gets.chomp
-  p 'Odd para o empate'
-  empate = gets.chomp
+  def registar_aposta
+    require 'time'
+    p 'Descrição do Evento'
+    des = gets.chomp
+    p 'Data e hora do evento YYYY-MM-dd HH:mm:ss'
+    time = Time.parse(gets.chomp)
+    p 'Nome da equipa 1'
+    eq1 = gets.chomp
+    p 'Nome da equipa 2'
+    eq2 = gets.chomp
+    p 'Odd para a equipa 1'
+    odd1 = gets.chomp.to_f
+    p 'Odd para a equipa 2'
+    odd2 = gets.chomp.to_f
+    p 'Odd para o empate'
+    empate = gets.chomp.to_f
 
-  a = Evento.initialize(Main.get_contador_evento,des,date,odd1,odd2,empate,eq1,eq2)
-  Main.add_contador_evento
-  @bookie.novo_evento(a.get_id)
-  #bd.addEvento(a.getId(), a);
-  a.add_observer(@bookie)
+
+    evento = Evento.new(1, des, time, odd1, odd2, empate, eq1, eq2)
+    @bookie.novo_evento(evento.id)
+    BetESS.addEvento(evento, @bookie.email)
+
+    #p "Evento = #{evento.data_init}, mais #{evento.descricao} mais #{evento.estado}"
+
+    #a.add_observer(@bookie)
 
   end
 
@@ -89,3 +89,9 @@ class MenuBookie
 
   end
 end
+
+
+book = Bookie.new('raul', '123', 'raul@g.com')
+BetESS.registarBookie(book)
+menu = MenuBookie.new(book)
+menu.start

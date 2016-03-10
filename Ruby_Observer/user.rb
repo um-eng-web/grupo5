@@ -2,6 +2,7 @@
 
 class User
 
+  attr_reader :nome,:password,:email
   def initialize(email,password,nome)
     @nome=nome
     @password=password
