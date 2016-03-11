@@ -31,8 +31,8 @@ class BetESS
 
   end
 
-  def addEvento(evento, bookiemail)
-    bookie = user = @users[bookiemail]
+  def addEvento(evento, bookie)
+    #bookie = user = @users[bookiemail]
     if !bookie || !bookie.is_a?(Bookie)
     else
       id = @eventos.length
