@@ -13,6 +13,7 @@ class MenuBookie
   end
 
   def start
+    while @flag do
     p '************************************************'
     p '*                    BOOKIE                    *'
     p '************************************************'
@@ -54,6 +55,8 @@ class MenuBookie
         @flag = false
 
     end
+    end
+
 
   end
 
@@ -137,6 +140,6 @@ end
 
 
 book = Bookie.new('raul', '123', 'raul@g.com')
-BetESS.registarBookie(book)
+BetESS.registarBookie('raul', '123', 'raul@g.com')
 menu = MenuBookie.new(book)
 menu.start

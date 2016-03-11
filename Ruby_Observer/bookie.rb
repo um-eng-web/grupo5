@@ -8,6 +8,8 @@ class Bookie < User
 
   def initialize(nome, password, email)
     super(email, password, nome)
+    @not_odd = Set.new
+    @resultados_eventos = Hash.new
     @eventos_criados = Set.new
   end
 
@@ -19,6 +21,17 @@ class Bookie < User
   def criou_evento(id)
     return @eventos_criados.include?(id)
 
+  end
+
+  def update(id,info)
+    case info
+      when 'res'
+        then @resultados_eventos[id]=info
+      when 'odd'
+        then @not_odd.add(id)
+
+
+    end
   end
 
 
