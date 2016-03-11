@@ -86,6 +86,7 @@ class Menu_Admin
   end
 end
 
+=begin
 admin= Admin.new("admin","admin","admin")
 book = Bookie.new('raul', '123', 'raul@g.com')
 betEss = BetESS.new
@@ -95,4 +96,6 @@ betEss.addEvento(even,'raul@g.com')
 
 menu = Menu_Admin.new(admin,betEss)
 menu.start
+=end
+
 
