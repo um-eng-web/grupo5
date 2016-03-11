@@ -1,0 +1,2 @@
+class Menu_Admin
+end
