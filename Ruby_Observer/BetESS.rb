@@ -7,8 +7,16 @@ require_relative 'Evento'
 class BetESS
   def initialize
     @users = Hash.new
-    @users["admin"] = Admin.new('admin@g.com', 'pass', 'zeArtolas')
+    #@users["admin"] = Admin.new('admin@g.com', 'pass', 'zeArtolas')
     @eventos = Hash.new
+  end
+
+  def existUser(email)
+    (@users[email]) ? true : false
+  end
+
+  def getUser(email)
+    @users[email]
   end
 
 
@@ -17,7 +25,19 @@ class BetESS
     bookie = Bookie.new(nome, password, email)
     @users[email] = bookie
 
+  end
 
+
+  def registarAdmin(email, password, nome)
+    admin = Admin.new(nome, password, email)
+    @users[email] = admin
+
+
+  end
+
+  def registarApostador(email, password, nome, valor)
+    apos = Apostador.new(nome, password, email, valor)
+    @users[email] = apos
   end
 
 
@@ -45,10 +65,6 @@ class BetESS
     end
   end
 
-  def registarApostador(apostador)
-    return nil if @users[apostador.email]
-    @users[apostador.email] = apostador
-  end
 
   def setOddEvento(id, odd_v, odd_e, odd_d)
     @eventos[id.to_i].set_odd(odd_v, odd_e, odd_d)

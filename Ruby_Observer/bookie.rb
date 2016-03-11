@@ -4,7 +4,7 @@ require 'set'
 require 'observer'
 
 class Bookie < User
-  attr_accessor :eventos_criados, :not_odd,:@resultados_eventos
+  attr_accessor :eventos_criados, :not_odd,:resultados_eventos
 
   def initialize(nome, password, email)
     super(email, password, nome)

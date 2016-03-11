@@ -165,7 +165,7 @@ class MenuBookie
 
 end
 
-
+=begin
 book = Bookie.new('raul', '123', 'raul@g.com')
 book2 = Bookie.new('raul2', '123', 'raul2@g.com')
 betEss = BetESS.new
@@ -179,3 +179,4 @@ betEss.addEvento(even2, book2)
 book.update(0,"odd")
 menu = MenuBookie.new(book, betEss)
 menu.start
+=end
