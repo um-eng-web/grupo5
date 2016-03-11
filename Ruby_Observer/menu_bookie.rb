@@ -135,6 +135,33 @@ class MenuBookie
     end
   end
 
+  def listar_notificacoes_odd
+
+    if @bookie.not_odd.empty?
+      p 'Não existem alterações'
+    else
+      p ' Novas odds nos seguintes eventos:'
+      @bookie.not_odd.each do |idevento|
+       p" #{@betEss.getEventos[idevento].to_s}"
+
+      end
+
+    end
+  end
+
+  def listar_final_apostas
+
+    if !@bookie.resultados_eventos.empty?
+      @bookie.resultados_eventos.each do |id,info|
+        p "#{info}"
+      end
+    end
+  end
+
+  def limpar_nofificacoes
+    @bookie.limpaNoficacoesOdd
+  end
+
 
 end
 
@@ -148,5 +175,7 @@ even= Evento.new(0, "des", "1999-12-22 12:12:12", 1.1, 2.2, 1.1, "slb", "fcp")
 even2= Evento.new(1, "des", "1999-12-22 12:12:12", 1.1, 2.2, 1.1, "zero", "um")
 betEss.addEvento(even, book)
 betEss.addEvento(even2, book2)
+
+book.update(0,"odd")
 menu = MenuBookie.new(book, betEss)
 menu.start
