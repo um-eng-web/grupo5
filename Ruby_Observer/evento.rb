@@ -1,11 +1,13 @@
 require_relative 'odd'
+require 'observer'
 
 
 class Evento
+  include Observable
+
   attr_reader :data_init, :descricao, :estado, :id
   attr_writer :id
 
-  #implements :Observable
 
   def initialize(id, descricao, data, odd1, odd2, empate, eq1, eq2)
     @id=id
@@ -15,24 +17,31 @@ class Evento
     @nome_equipa2=eq2
     @estado=true
     @concluida=false
-    @observers=Array.new
     @odd=Odd.new(odd1, empate, odd2)
   end
 
   def add_observer(o)
-    @observers.insert(@observers.last, o)
+    add_observer(o)
   end
 
   def remove_observer(o)
-    @observers.delete(o)
+    remove_observer(o)
   end
 
   # falta o método notify_observer(resultado)
 
-  def notify_observer_odd
-    @observers.each { |o| o.update_odd(@id) }
+  def notify_observers(resultado)
+
+
   end
 
+  def notify_observer_odd
+    notify_observers("odd",@id)
+  end
+
+  def set_odd(odd_v,odd_e,odd_d)
+    @odd= Odd.new(odd_v,odd_e,odd_d)
+  end
 
   def to_s
     #if @result

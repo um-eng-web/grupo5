@@ -42,7 +42,7 @@ class MenuBookie
         listar_apostas
       when '5' then
         p '************************************************'
-        listar_final_apostas
+        listar_final_apostas                                    ######### ver aqui isto tudo
       when '6' then
         p '************************************************'
         listar_notificacoes_odd
@@ -58,7 +58,7 @@ class MenuBookie
   end
 
   def registar_aposta
-    require 'time'
+
     p 'Descrição do Evento'
     des = gets.chomp
     p 'Data e hora do evento YYYY-MM-dd HH:mm:ss'
@@ -73,10 +73,7 @@ class MenuBookie
     odd2 = gets.chomp.to_f
     p 'Odd para o empate'
     empate = gets.chomp.to_f
-
-
     evento = Evento.new(1, des, time, odd1, odd2, empate, eq1, eq2)
-    @bookie.novo_evento(evento.id)
     BetESS.addEvento(evento, @bookie.email)
 
     #p "Evento = #{evento.data_init}, mais #{evento.descricao} mais #{evento.estado}"
@@ -86,9 +83,57 @@ class MenuBookie
   end
 
   def editar_aposta
+    p 'Insira Id da aposta a alterar'
+    id = gets.chomp
+    if @bookie.criou_evento(id)
+    then
+      p 'Odd para a equipa 1'
+      odd1 = gets.chomp.to_f
+      p 'Odd para a equipa 2'
+      odd2 = gets.chomp.to_f
+      p 'Odd para o empate'
+      empate = gets.chomp.to_f
+      BetESS.setOddEvento(id, odd1, empate, odd2)
+    else
+      p 'Não tem permissões para alterar'
+    end
+  end
+
+
+  def  registar_interesse
+    p 'Insira Id da aposta que deseja registar interesse'
+    id = gets.chomp
+    if BetESS.existEvento(id)
+      then
+      unless BetESS.registaInteresse(id, @bookie)
+        p 'Aposta fechada'
+      end
+    end
+  end
+
+
+  def listar_apostas
+    eventos = BetESS.getEventos
+
+    eventos.each do |evento|
+      !@bookie.eventos_criados.empty? ?
+          unless @bookie.eventos_criados.include?(evento.id)
+            evento.to_s
+          end :
+          evento.to_s if evento.estado
+    end
 
   end
+
+
+
+
+
+
 end
+
+
+
 
 
 book = Bookie.new('raul', '123', 'raul@g.com')

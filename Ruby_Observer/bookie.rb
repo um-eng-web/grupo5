@@ -1,6 +1,7 @@
 require_relative 'user'
 
 require 'set'
+require 'observer'
 
 class Bookie < User
   attr_accessor :eventos_criados
@@ -13,6 +14,11 @@ class Bookie < User
 
   def novo_evento(id_evento)
     @eventos_criados.add(id_evento)
+  end
+
+  def criou_evento(id)
+    return @eventos_criados.include?(id)
+
   end
 
 
