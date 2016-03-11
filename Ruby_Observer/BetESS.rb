@@ -3,56 +3,74 @@ require_relative 'Bookie'
 require_relative 'Apostador'
 require_relative 'Evento'
 
-class BetESS
-  @@users = {}
-  @@users["admin"] = Admin.new('admin@g.com', 'pass', 'zeArtolas')
-  @@eventos = {}
 
-  def self.registarBookie(email, password, nome)
-    return nil if @@users[email]
-    bookie = Bookie.new(nome, password, email)
-    @@users[bookie.email] = bookie
+class BetESS
+  def initialize
+    @users = Hash.new
+    @users["admin"] = Admin.new('admin@g.com', 'pass', 'zeArtolas')
+    @eventos = Hash.new
   end
 
-  def self.addEvento(evento, bookiemail)
-    bookie = user = @@users[bookiemail]
+
+  def registarBookie(email, password, nome)
+    return nil if @users[email]
+    bookie = Bookie.new(nome, password, email)
+    @users[email] = bookie
+
+
+  end
+
+
+  def fechaEvento(id)
+    @eventos[id.to_i].estado=false
+  end
+
+  def concluirEvento(id, resultado)
+    @eventos[id].set_resultado(resultado)
+    @eventos[id].notify_observers(resultado)
+
+  end
+
+  def addEvento(evento, bookiemail)
+    bookie = user = @users[bookiemail]
     if !bookie || !bookie.is_a?(Bookie)
     else
-      id = @@eventos.length
+      id = @eventos.length
       evento.id=id
-      evento.add_observer(bookie)
-      @bookie.novo_evento(evento.id)
-      @@eventos[id] = evento
+      evento.add_observer_evento(bookie)
+      bookie.novo_evento(evento.id)
+      @eventos[id] = evento
+
 
     end
   end
 
-  def self.registarApostador(apostador)
-    return nil if @@users[apostador.email]
-    @@users[apostador.email] = apostador
+  def registarApostador(apostador)
+    return nil if @users[apostador.email]
+    @users[apostador.email] = apostador
   end
 
-  def self.setOddEvento(id, odd_v, odd_e, odd_d)
-    @@eventos[id].set_odd(odd_v, odd_e, odd_d)
-    @@eventos[id].notify_observer_odd
+  def setOddEvento(id, odd_v, odd_e, odd_d)
+    @eventos[id].set_odd(odd_v, odd_e, odd_d)
+    @eventos[id].notify_observer_odd
   end
 
-  def self.existEvento(id)
-    return @@eventos.include?(id)
+  def existEvento(id)
+    return @eventos.include?(id)
   end
 
-  def self.registaInteresse(id,bookie)
-    if @@eventos[id].estado
-      then
-      @@eventos[id].add_observer(bookie)
+  def registaInteresse(id, bookie)
+    if @eventos[id].estado
+    then
+      @eventos[id].add_observer(bookie)
       return true
     else
       return false
     end
   end
 
-  def self.getEventos
-    @@eventos.values
+  def getEventos
+    @eventos.values
   end
 
 
