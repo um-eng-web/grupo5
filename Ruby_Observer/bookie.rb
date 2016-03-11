@@ -4,13 +4,15 @@ require 'set'
 require 'observer'
 
 class Bookie < User
-  attr_accessor :eventos_criados
+  attr_accessor :eventos_criados, :not_odd,:resultados_eventos
 
   def initialize(nome, password, email)
     super(email, password, nome)
     @not_odd = Set.new
     @resultados_eventos = Hash.new
     @eventos_criados = Set.new
+
+
   end
 
 
@@ -32,6 +34,10 @@ class Bookie < User
 
 
     end
+  end
+
+  def limpaNoficacoesOdd
+    @not_odd = Set.new
   end
 
 

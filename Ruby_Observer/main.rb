@@ -1,17 +1,21 @@
 require_relative 'bookie'
+require_relative 'BetESS'
+require_relative 'Menu_Bookie'
+require_relative 'Menu_Admin'
 
 current_folder = File.expand_path('../', __FILE__) # get absolute directory
 Dir['#{current_folder}/**/*.rb'].each { |f| require f }
 
 class Main
 
-  attr_accessor :utilizadores
+
   attr_accessor :contador_id_evento
 
   # método que incializa todas as variáveis e estruturas de dados necessários
   def initialize
-    @utilizadores = Hash.new
-    @contador_id_evento = 0
+    @betEss = BetESS.new
+    @betEss.registarAdmin('admin', 'pass', 'zeArtolas')
+
 
   end
 
@@ -61,13 +65,14 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @utilizadores.key?(email)
-      bookie = @utilizadores[email]
+
+    if @betEss.existUser(email)
+      bookie = @betEss.getUser(email)
       if bookie.is_a?(Bookie)
-        puts 'ok'
-        MenuBookie.start
+        menuBookie= MenuBookie.new(bookie, @betEss)
+        menuBookie.start
       else
-        puts 'not ok'
+        puts 'sem autorização'
       end
     else
       puts 'Não está registado'
@@ -80,12 +85,16 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @utilizadores.key?(email)
-      apostador = @utilizadores[email]
+    if @betEss.existUser(email)
+      apostador = @betEss.getUser(email)
       if apostador.is_a?(Apostador)
-        puts 'ok'
+
+
+        ### CRIAR MENU PARA APOSTADOR####
+
+
       else
-        puts 'not ok'
+        puts 'Sem autorização'
       end
     else
       puts 'Não está registado'
@@ -98,12 +107,13 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @utilizadores.key?(email)
-      admin = @utilizadores[email]
+    if @betEss.existUser(email)
+      admin = @betEss.getUser(email)
       if admin.is_a?(Admin)
-        puts 'ok'
+        menuAdmin= Menu_Admin.new(admin, @betEss)
+        menuAdmin.start
       else
-        puts 'not ok'
+        puts 'sem autorização'
       end
     else
       puts 'Não está registado'
@@ -128,10 +138,8 @@ class Main
     pass = gets.chomp
     p 'Insira a quantia para as apostas'
     valor = gets.chomp
-    apos = Apostador.new(email, pass, nome, valor)
+    @betEss.registarApostador(email, pass, nome, valor)
 
-    @utilizadores[apos.get_email]=apos
-    #print_utilzadores
   end
 
   # método que incrementa o id de um dado evento
@@ -150,10 +158,12 @@ end
 
 #=begin
 menu = Main.new
-book = Bookie.new('raul','123','raul@g.com')
+#book = Bookie.new('raul','123','raul@g.com')
 #book= Bookie.new('raul','123','raul@g.com')
-menu.utilizadores[book.get_email]=book
-
+#menu.utilizadores[book.get_email]=book
+#betEss= BetESS.new
+#betEss.registarAdmin('admin@g.com', 'pass', 'zeArtolas')
+#p "#{betEss.existUser('admin@g.com')}"
 menu.menu_principal
 
 
