@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fab5cd5f-1699-428a-b0bc-0492d6038aee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Ruby_Observer.iml" afterPath="$PROJECT_DIR$/.idea/Ruby_Observer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BetESS.rb" afterPath="$PROJECT_DIR$/BetESS.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bookie.rb" afterPath="$PROJECT_DIR$/bookie.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/evento.rb" afterPath="$PROJECT_DIR$/evento.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menu_admin.rb" afterPath="$PROJECT_DIR$/menu_admin.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menu_bookie.rb" afterPath="$PROJECT_DIR$/menu_bookie.rb" />
     </list>
     <ignored path="Ruby_Observer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,7 +21,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Ruby_Observer@apostador.coverage" NAME="apostador Coverage Results" MODIFIED="1457557484654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Ruby_Observer" />
     <SUITE FILE_PATH="coverage/Ruby_Observer@BetESS.coverage" NAME="BetESS Coverage Results" MODIFIED="1457698380311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Ruby_Observer" />
-    <SUITE FILE_PATH="coverage/Ruby_Observer@menu_admin.coverage" NAME="menu_admin Coverage Results" MODIFIED="1457704057757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Ruby_Observer" />
+    <SUITE FILE_PATH="coverage/Ruby_Observer@menu_admin.coverage" NAME="menu_admin Coverage Results" MODIFIED="1457704603433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Ruby_Observer" />
     <SUITE FILE_PATH="coverage/Ruby_Observer@aposta.coverage" NAME="aposta Coverage Results" MODIFIED="1457556232282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Ruby_Observer" />
     <SUITE FILE_PATH="coverage/Ruby_Observer@user.coverage" NAME="user Coverage Results" MODIFIED="1457556195760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Ruby_Observer" />
     <SUITE FILE_PATH="coverage/Ruby_Observer@All_tests_in_Ruby_Observer__Ruby_Observer.coverage" NAME="All tests in Ruby_Observer: Ruby_Observer Coverage Results" MODIFIED="1456753958503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Ruby_Observer" />
@@ -72,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu_admin.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="menu_admin.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/menu_admin.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.43526787">
+              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -86,17 +84,17 @@
         <entry file="file://$PROJECT_DIR$/evento.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+              <caret line="62" column="121" selection-start-line="62" selection-start-column="121" selection-end-line="62" selection-end-column="121" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BetESS.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BetESS.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BetESS.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68303573">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state vertical-scroll-proportion="-1.1111112">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -131,9 +129,9 @@
         <option value="$PROJECT_DIR$/odd.rb" />
         <option value="$PROJECT_DIR$/menu_bookie.rb" />
         <option value="$PROJECT_DIR$/bookie.rb" />
-        <option value="$PROJECT_DIR$/evento.rb" />
         <option value="$PROJECT_DIR$/menu_admin.rb" />
         <option value="$PROJECT_DIR$/BetESS.rb" />
+        <option value="$PROJECT_DIR$/evento.rb" />
       </list>
     </option>
   </component>
@@ -889,14 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/evento.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bookie.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -905,18 +895,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/menu_admin.rb">
+    <entry file="file://$PROJECT_DIR$/BetESS.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+        <state vertical-scroll-proportion="-1.1111112">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BetESS.rb">
+    <entry file="file://$PROJECT_DIR$/evento.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68303573">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="121" selection-start-line="62" selection-start-column="121" selection-end-line="62" selection-end-column="121" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menu_admin.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43526787">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
           <folding />
         </state>
       </provider>

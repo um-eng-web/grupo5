@@ -59,9 +59,7 @@ class Evento
   end
 
   def to_s
-    #if @result
-    # "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd}) | Resultado Final:#{@result} | Date #{@date}"
-    #else
-    "ID=#{@id} | #{@nome_equipa1} VS #{@nome_equipa2} Odds(#{@odd.odd_v}|#{@odd.odd_e}|#{@odd.odd_d}) Date #{@data_init}"
+
+    "ID=#{@id} | #{@nome_equipa1} VS #{@nome_equipa2} Odds(#{@odd.odd_v}|#{@odd.odd_e}|#{@odd.odd_d}) Date #{@data_init} Aberta=>#{@estado} Concluida=>#{@concluida} "
   end
 end

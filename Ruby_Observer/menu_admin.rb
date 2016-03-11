@@ -68,7 +68,7 @@ class Menu_Admin
 
   end
 
-  def conluir_aposta
+  def concluir_aposta
     p' Introduza o id da aposta a fechar'
     id = gets.chomp
     p'0-Empate'

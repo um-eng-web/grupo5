@@ -26,8 +26,8 @@ class BetESS
   end
 
   def concluirEvento(id, resultado)
-    @eventos[id].set_resultado(resultado)
-    @eventos[id].notify_observers(resultado)
+    @eventos[id.to_i].set_resultado(resultado)
+    @eventos[id.to_i].notify_observers(resultado)
 
   end
 
@@ -39,7 +39,7 @@ class BetESS
       evento.id=id
       evento.add_observer_evento(bookie)
       bookie.novo_evento(evento.id)
-      @eventos[id] = evento
+      @eventos[id.to_i] = evento
 
 
     end
@@ -51,18 +51,18 @@ class BetESS
   end
 
   def setOddEvento(id, odd_v, odd_e, odd_d)
-    @eventos[id].set_odd(odd_v, odd_e, odd_d)
-    @eventos[id].notify_observer_odd
+    @eventos[id.to_i].set_odd(odd_v, odd_e, odd_d)
+    @eventos[id.to_i].notify_observer_odd
   end
 
   def existEvento(id)
-    return @eventos.include?(id)
+    return @eventos.include?(id.to_i)
   end
 
   def registaInteresse(id, bookie)
-    if @eventos[id].estado
+    if @eventos[id.to_i].estado
     then
-      @eventos[id].add_observer(bookie)
+      @eventos[id.to_i].add_observer(bookie)
       return true
     else
       return false
