@@ -35,5 +35,5 @@ build/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 /BetEssInNetBeans/BetEss/nbproject/private/
-/.idea/
-.idea/workspace.xml
+
+/Ruby_Observer/.idea/workspace.xml
