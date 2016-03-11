@@ -8,8 +8,9 @@ class BetESS
   @@users["admin"] = Admin.new('admin@g.com', 'pass', 'zeArtolas')
   @@eventos = {}
 
-  def self.registarBookie(bookie)
-    return nil if @@users[bookie.email]
+  def self.registarBookie(email, password, nome)
+    return nil if @@users[email]
+    bookie = Bookie.new(nome, password, email)
     @@users[bookie.email] = bookie
   end
 

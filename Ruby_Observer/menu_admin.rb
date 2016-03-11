@@ -1,4 +1,7 @@
+require_relative 'BetESS'
+
 class Menu_Admin
+
 
   def initialize(admin)
     @admin=admin
@@ -31,8 +34,23 @@ class Menu_Admin
         @flag = false
 
     end
+  end
 
+  def registar_bookie
+    p'************************************************'
+    p'*               Registar Bookie                *'
+    p'************************************************'
+    p 'Insira um email: '
+    email = gets.chomp
+    p 'Insira o nome'
+    nome = gets.chomp
+    p ' Insira a palavra passe'
+    pass = gets.chomp
+    BetESS.registarBookie(email,pass,nome)
 
+  end
 
+  def fechar_aposta
+    
   end
 end
