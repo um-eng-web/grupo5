@@ -73,6 +73,7 @@ class MenuApostador
       p '1 - Equipa 1'
       p '2 - Equipa 2'
       aposta = gets.chomp
+      aposta.to_f
       p 'Valor a apostar:'
       valor = gets.chomp.to_i
       if @apostador.valor < valor

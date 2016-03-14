@@ -69,7 +69,7 @@ class Main
 
     if @betEss.existUser(email)
       bookie = @betEss.getUser(email)
-      if bookie.is_a?(Bookie)
+      if bookie.is_a?(Bookie) and bookie.password==pass
         menuBookie= MenuBookie.new(bookie, @betEss)
         menuBookie.start
       else
@@ -88,7 +88,7 @@ class Main
     pass= gets.chomp
     if @betEss.existUser(email)
       apostador = @betEss.getUser(email)
-      if apostador.is_a?(Apostador)
+      if apostador.is_a?(Apostador) and apostador.password==pass
         m_apostador= MenuApostador.new(apostador,@betEss)
         m_apostador.start
 
@@ -108,7 +108,7 @@ class Main
     pass= gets.chomp
     if @betEss.existUser(email)
       admin = @betEss.getUser(email)
-      if admin.is_a?(Admin)
+      if admin.is_a?(Admin) and admin.password==pass
         menuAdmin= Menu_Admin.new(admin, @betEss)
         menuAdmin.start
       else
