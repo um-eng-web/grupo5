@@ -93,8 +93,7 @@ class MenuApostador
     if @apostador.lista_apostas.empty?
       p 'Não existem Apostas'
     else
-      apostas = @apostador.lista_apostas.values
-      apostas.each do |aposta|
+      @apostador.lista_apostas.values.each do |aposta|
         if aposta.fechada
           ap = aposta
           p "#{@betEss.getEventos[idevento].to_s}"
@@ -124,16 +123,16 @@ class MenuApostador
 
 end
 
-begin
-  book = Bookie.new('raul', '123', 'raul@g.com')
-apos = Apostador.new('qwe@gmail.com',123,'tone',123)
-time = Time.new
-aposta = Aposta.new(1,1,1,10.33,2.2,3.3,0.2,time)
-bet_ess = BetESS.new
-  bet_ess.registarBookie('raul@g.com', '123', 'raul')
-bet_ess.registarApostador('qwe@gmail.com',123,'tone',123)
-  even= Evento.new(0, "des", "1999-12-22 12:12:12", 1.1, 2.2, 1.1, "slb", "fcp")
-  bet_ess.addEvento(even, book)
-menu = MenuApostador.new(apos, bet_ess)
-menu.start
-end
+#begin
+#  book = Bookie.new('raul', '123', 'raul@g.com')
+#apos = Apostador.new('qwe@gmail.com',123,'tone',123)
+#time = Time.new
+#aposta = Aposta.new(1,1,1,10.33,2.2,3.3,0.2,time)
+#bet_ess = BetESS.new
+#  bet_ess.registarBookie('raul@g.com', '123', 'raul')
+#bet_ess.registarApostador('qwe@gmail.com',123,'tone',123)
+#  even= Evento.new(0, "des", "1999-12-22 12:12:12", 1.1, 2.2, 1.1, "slb", "fcp")
+#  bet_ess.addEvento(even, book)
+#menu = MenuApostador.new(apos, bet_ess)
+#menu.start
+#end
