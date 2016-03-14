@@ -1,15 +1,18 @@
 require_relative 'odd'
-require 'observer'
+require_relative 'Subject'
+#require 'observer'
 
 
 class Evento
-  include Observable
+  #include Observable
+  include Subject
 
   attr_reader :data_init, :descricao
   attr_accessor :id,:estado,:concluida, :odd
 
 
   def initialize(id, descricao, data, odd1, odd2, empate, eq1, eq2)
+    super()
     @id=id
     @descricao=descricao
     @data_init=data

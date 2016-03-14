@@ -57,7 +57,7 @@ class BetESS
     else
       id = @eventos.length
       evento.id=id
-      evento.add_observer_evento(bookie)
+      evento.add_observer(bookie)
       bookie.novo_evento(evento.id)
       @eventos[id.to_i] = evento
 

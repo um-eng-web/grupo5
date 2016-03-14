@@ -4,7 +4,7 @@ require_relative 'odd'
 
 class Aposta
 
-  attr_reader :ganho, :id_evento
+  attr_reader :ganho, :id_evento, :ganho
   attr_accessor :fechada, :resultado
 
   def initialize(id,id_evento,escolha,valor,odd_v,odd_e,odd_d,data)
@@ -52,16 +52,20 @@ class Aposta
   end
 
   def cal_ganho
+    p' entrou no cal ganho'
+    p"resultado = #{@resultado}"
+    p"escolha = #{@escolha}"
+    p"valor = #{@valor}"
 
-    case @resultado
+    case @resultado.to_i
       when 1 then if @resultado==@escolha
-                    @ganho=@valor* @odd.odd_v
+                    @ganho=@valor.to_f* @odd.odd_v.to_f
                   end
       when 2 then if @resultado==@escolha
-                      @ganho=@valor* @odd.odd_d
+                      @ganho=@valor.to_f* @odd.odd_d.to_f
                   end
       when 0 then if @resultado==@escolha
-                    @ganho=@valor* @odd.odd_e
+                    @ganho=@valor.to_f* @odd.odd_e.to_f
                   end
     end
   end

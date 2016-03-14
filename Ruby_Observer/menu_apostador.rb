@@ -79,7 +79,8 @@ class MenuApostador
         p 'Não tem valor disponível para essa aposta'
       else
         @apostador.set_valor(@apostador.valor.to_f - valor)
-        @betEss.getEventos[id].add_observer_evento(@apostador)
+      #  p" add observer ao evento = #{ @betEss.getEventos[id].descricao}"
+        @betEss.getEventos[id].add_observer(@apostador)
         ap = Aposta.new(@apostador.contador_id_aposta,id,aposta,valor,@betEss.getEventos[id].odd.odd_v,@betEss.getEventos[id].odd.odd_d,@betEss.getEventos[id].odd.odd_e,nil)
         @apostador.add_aposta(ap)
         p 'Registado'
@@ -96,7 +97,6 @@ class MenuApostador
       @apostador.lista_apostas.values.each do |aposta|
         if aposta.fechada
           ap = aposta
-          p "#{@betEss.getEventos[idevento].to_s}"
           p 'Ganho: ' + "#{ap.ganho}"
         end
       end

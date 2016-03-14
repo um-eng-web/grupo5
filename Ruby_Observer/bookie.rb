@@ -1,7 +1,7 @@
 require_relative 'user'
 
 require 'set'
-require 'observer'
+require_relative 'self_observer'
 
 class Bookie < User
   attr_accessor :eventos_criados, :not_odd,:resultados_eventos

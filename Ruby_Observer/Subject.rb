@@ -1,4 +1,3 @@
-
 module Subject
   def initialize
     @observers=[]
@@ -11,16 +10,16 @@ module Subject
   def delete_observer(observer)
     @observers.delete(observer)
   end
-
-  def notify_observer(resultado)
+=begin
+  def  notify_observers_resultado(tipo,info,resultado)
     @observers.each do |observer|
-      observer.update_odd(resultado)
+      observer.update(tipo,info,resultado)
     end
   end
-  def notify_observers_odd
+=end
+  def notify_observers(tipo,info,resultado)
     @observers.each do |observer|
-      observer.update(self)
+      observer.update(tipo,info,resultado)
     end
   end
-
 end
