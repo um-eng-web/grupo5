@@ -2,6 +2,7 @@ require_relative 'bookie'
 require_relative 'BetESS'
 require_relative 'Menu_Bookie'
 require_relative 'Menu_Admin'
+require_relative 'Menu_Apostador'
 
 current_folder = File.expand_path('../', __FILE__) # get absolute directory
 Dir['#{current_folder}/**/*.rb'].each { |f| require f }
@@ -88,10 +89,8 @@ class Main
     if @betEss.existUser(email)
       apostador = @betEss.getUser(email)
       if apostador.is_a?(Apostador)
-
-
-        ### CRIAR MENU PARA APOSTADOR####
-
+        m_apostador= MenuApostador.new(apostador,@betEss)
+        m_apostador.start
 
       else
         puts 'Sem autorização'
