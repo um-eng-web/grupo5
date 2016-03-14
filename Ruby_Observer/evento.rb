@@ -6,7 +6,7 @@ class Evento
   include Observable
 
   attr_reader :data_init, :descricao
-  attr_accessor :id,:estado,:concluida
+  attr_accessor :id,:estado,:concluida, :odd
 
 
   def initialize(id, descricao, data, odd1, odd2, empate, eq1, eq2)
