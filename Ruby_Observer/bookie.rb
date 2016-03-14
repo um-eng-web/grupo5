@@ -25,7 +25,7 @@ class Bookie < User
 
   end
 
-  def update(id,info)
+  def update(id,info,resultado)
     case info
       when 'res'
         then @resultados_eventos[id]=info

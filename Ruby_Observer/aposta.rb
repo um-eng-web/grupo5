@@ -4,12 +4,12 @@ require_relative 'odd'
 
 class Aposta
 
-  attr_reader :ganho
+  attr_reader :ganho, :id_evento
   attr_accessor :fechada, :resultado
 
-  def initialize(id,id_equipa,escolha,valor,odd_v,odd_e,odd_d,data)
+  def initialize(id,id_evento,escolha,valor,odd_v,odd_e,odd_d,data)
     @id=id
-    @id_equipa=id_equipa
+    @id_evento=id_evento
     @escolha=escolha
     @valor = valor
     @odd = Odd.new(odd_v,odd_e,odd_d)
@@ -24,7 +24,7 @@ class Aposta
   end
 
   def self.get_id_evento
-    @id_equipa
+    id_evento
   end
 
   def set_fechada

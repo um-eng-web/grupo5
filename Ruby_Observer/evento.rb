@@ -37,6 +37,8 @@ class Evento
   # falta o método notify_observer(resultado)
 
   def notify_observers_resultado(resultado)
+    p ' Notifica apostadores!!!'
+
     case resultado
       when '0' then res="Empate"
       when '1' then res=@nome_equipa1
@@ -44,14 +46,14 @@ class Evento
         res=@nome_equipa2
     end
     res = self.to_s + " " + res
-    notify_observers('res',res)
+    notify_observers('res',res,resultado)
 
 
 
   end
 
   def notify_observer_odd
-    notify_observers('odd',@id)
+    notify_observers('odd',@id,"")
   end
 
   def set_odd(odd_v,odd_e,odd_d)

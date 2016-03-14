@@ -16,6 +16,12 @@ class Main
   def initialize
     @betEss = BetESS.new
     @betEss.registarAdmin('admin', 'pass', 'zeArtolas')
+    book = Bookie.new('book','123','ze')
+    @betEss.registarBookie('book','123','ze')
+    @betEss.registarApostador("ze","123","ze","20")
+    evento= Evento.new('1',"ces","",'1.1','2.2','1.1','slb','fcp')
+
+    @betEss.addEvento(evento,book)
 
 
   end
@@ -136,7 +142,7 @@ class Main
     p 'Insira uma palavra passe'
     pass = gets.chomp
     p 'Insira a quantia para as apostas'
-    valor = gets.chomp
+    valor = gets.chomp.to_f
     @betEss.registarApostador(email, pass, nome, valor)
 
   end

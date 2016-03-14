@@ -2,6 +2,7 @@ require_relative  'user'
 require_relative 'aposta'
 require_relative 'evento'
 require 'time'
+require 'observer'
 
 require 'set'
 
@@ -54,14 +55,30 @@ class Apostador < User
     @not_odd = Set.new
   end
 
-  def update(id_evento,evento,resultado)
-    self.get_apostas_by_id_event(id_evento).each do |apos|
-      apos.set_fechada
-      apos.set_resultado(resultado)
-      apos.cal_ganho
-      @valor += apos.ganho
+  def update(id,info,resultado)
+    case info
+      when 'res'
+      then
+        self.get_apostas_by_id_event(id_evento).each do |apos|
+          apos.set_fechada
+          apos.set_resultado(resultado)
+          apos.cal_ganho
+          @valor += apos.ganho
+        end
+      when 'odd'
+        @notificacoes_odd.add(id)
+
+
+
     end
   end
+
+
+
+
+
+
+
 
   def update_odd(id_evento)
     @notificacoes_odd.add(id_evento)

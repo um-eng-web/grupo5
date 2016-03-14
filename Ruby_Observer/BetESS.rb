@@ -47,7 +47,7 @@ class BetESS
 
   def concluirEvento(id, resultado)
     @eventos[id.to_i].set_resultado(resultado)
-    @eventos[id.to_i].notify_observers(resultado)
+    @eventos[id.to_i].notify_observers_resultado(resultado)
 
   end
 

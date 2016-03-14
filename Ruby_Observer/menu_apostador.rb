@@ -73,14 +73,13 @@ class MenuApostador
       p '1 - Equipa 1'
       p '2 - Equipa 2'
       aposta = gets.chomp
-      aposta.to_f
       p 'Valor a apostar:'
-      valor = gets.chomp.to_i
-      if @apostador.valor < valor
+      valor = gets.chomp.to_f
+      if @apostador.valor.to_f < valor
         p 'Não tem valor disponível para essa aposta'
       else
-        @apostador.set_valor(@apostador.valor - valor)
-        #@betEss.getEventos[id].add_observer_evento(@apostador)
+        @apostador.set_valor(@apostador.valor.to_f - valor)
+        @betEss.getEventos[id].add_observer_evento(@apostador)
         ap = Aposta.new(@apostador.contador_id_aposta,id,aposta,valor,@betEss.getEventos[id].odd.odd_v,@betEss.getEventos[id].odd.odd_d,@betEss.getEventos[id].odd.odd_e,nil)
         @apostador.add_aposta(ap)
         p 'Registado'
