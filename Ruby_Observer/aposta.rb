@@ -1,6 +1,6 @@
 
 
-
+require_relative 'odd'
 
 class Aposta
 
@@ -23,16 +23,12 @@ class Aposta
     @id
   end
 
-  def get_id_evento
+  def self.get_id_evento
     @id_equipa
   end
 
   def set_fechada
     @fechada = true
-  end
-
-  def get_fechada
-    @fechada
   end
 
   def set_valor(v)
@@ -53,10 +49,6 @@ class Aposta
 
   def set_resultado(res)
     @resultado = res
-  end
-
-  def get_ganho
-    @ganho
   end
 
   def cal_ganho
