@@ -41,6 +41,7 @@ class Apostador < User
   def get_apostas_by_id_event(evento)
     apostas = Set.new
     @lista_apostas.keys.each do |id_aposta|
+      p " id aposta get apostas #{id_aposta}"
       apostas.add(@lista_apostas[id_aposta]) if id_aposta.eql?(evento)
     end
     return apostas
@@ -56,6 +57,8 @@ class Apostador < User
   end
 
   def update(id, info, resultado)
+    p'update apostador'
+
 
     self.get_apostas_by_id_event(id.to_i).each do |apos|
       apos.set_fechada
