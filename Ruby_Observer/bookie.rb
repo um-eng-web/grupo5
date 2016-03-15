@@ -19,6 +19,7 @@ class Bookie < User
   end
 
   def addInteresse(id)
+    p" entrou em addInteresse no bookie"
     @eventos_interesse.add(id)
 
 

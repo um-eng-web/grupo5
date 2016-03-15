@@ -108,7 +108,10 @@ class MenuBookie
     id = gets.chomp
     if @betEss.existEvento(id.to_i)
     then
-      unless @betEss.registaInteresse(id, @bookie)
+      if @betEss.registaInteresse(id, @bookie)
+        p "registado o interese"
+
+      else
         p 'Aposta fechada'
       end
     end
@@ -119,12 +122,15 @@ class MenuBookie
     eventos = @betEss.getEventos
     eventos.each do |evento|
       if evento.estado
+
+
         if !@bookie.eventos_criados.empty?
-          if !@bookie.eventos_criados.include?(evento.id) and !@bookie.eventos_interesse.include?(evento.id)
-            
+          if !@bookie.eventos_criados.include?(evento.id.to_s) and !@bookie.eventos_interesse.include?(evento.id.to_s)
+
             p "#{evento.to_s}"
           end
-        else
+        elsif !@bookie.eventos_interesse.include?(evento.id.to_s)
+
           p "#{evento.to_s}"
 
         end
@@ -141,7 +147,7 @@ class MenuBookie
     else
       p ' Novas odds nos seguintes eventos:'
       @bookie.not_odd.each do |idevento|
-       p" #{@betEss.getEventos[idevento].to_s}"
+        p " #{@betEss.getEventos[idevento].to_s}"
 
       end
 
@@ -151,7 +157,7 @@ class MenuBookie
   def listar_final_apostas
 
     if !@bookie.resultados_eventos.empty?
-      @bookie.resultados_eventos.each do |id,info|
+      @bookie.resultados_eventos.each do |id, info|
         p "#{info}"
       end
     end
