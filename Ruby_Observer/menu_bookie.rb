@@ -88,7 +88,7 @@ class MenuBookie
   def editar_aposta
     p 'Insira Id da aposta a alterar'
     id = gets.chomp
-    if @bookie.criou_evento(id)
+    if @bookie.criou_evento(id.to_i)
     then
       p 'Odd para a equipa 1'
       odd1 = gets.chomp.to_f
@@ -106,7 +106,7 @@ class MenuBookie
   def registar_interesse
     p 'Insira Id da aposta que deseja registar interesse'
     id = gets.chomp
-    if @betEss.existEvento(id)
+    if @betEss.existEvento(id.to_i)
     then
       unless @betEss.registaInteresse(id, @bookie)
         p 'Aposta fechada'
@@ -121,6 +121,7 @@ class MenuBookie
       if evento.estado
         if !@bookie.eventos_criados.empty?
           if !@bookie.eventos_criados.include?(evento.id) and !@bookie.eventos_interesse.include?(evento.id)
+            
             p "#{evento.to_s}"
           end
         else

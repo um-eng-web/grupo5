@@ -18,7 +18,9 @@ class Main
     @betEss = BetESS.new
     @betEss.registarAdmin('admin', 'pass', 'zeArtolas')
     book = Bookie.new('book','123','ze')
+   # book2 = Bookie.new('b','123','ze')
     @betEss.registarBookie('book','123','ze')
+    @betEss.registarBookie('b','123','ze')
     @betEss.registarApostador("ze","123","ze","20")
     evento= Evento.new('1',"ces","",'1.1','2.2','1.1','slb','fcp')
     bookiee = @betEss.getUser('book')
