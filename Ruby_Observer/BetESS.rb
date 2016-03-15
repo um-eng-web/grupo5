@@ -86,6 +86,17 @@ class BetESS
     end
   end
 
+  def retiraInteresse(id, bookie)
+    if @eventos[id.to_i].estado
+    then
+      @eventos[id.to_i].remove_observer(bookie)
+      bookie.delInteresse(id)
+      return true
+    else
+      return false
+    end
+  end
+
   def getEventos
     @eventos.values
   end

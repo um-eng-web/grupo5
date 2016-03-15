@@ -21,11 +21,12 @@ class MenuBookie
       p '1-Registar nova Aposta'
       p '2-Editar Odd de Aposta'
       p '3-Registar Interesse '
-      p '4-Listar Apostas Diponiveis para Registar Interesse'
+      p '4-Retirar Interesse'
       p '5-Listar Resultado Final das Apostas com Interesse'
       p '6-Listar Notificações de Odds de Apostas Alteradas'
       p '7-Limpar Notificações'
-      p '8-Sair'
+      p '8-Listar Apostas Diponiveis para Registar Interesse'
+      p '9-Sair'
       opt = gets.chomp
 
       case opt
@@ -40,7 +41,7 @@ class MenuBookie
           registar_interesse
         when '4' then
           p '************************************************'
-          listar_apostas
+          retirar_interesse
         when '5' then
           p '************************************************'
           listar_final_apostas ######### ver aqui isto tudo
@@ -51,6 +52,9 @@ class MenuBookie
           p '************************************************'
           limpar_nofificacoes
         when '8' then
+          p '************************************************'
+          listar_apostas
+        when '9' then
           p '************************************************'
           @flag = false
 
@@ -102,6 +106,20 @@ class MenuBookie
     end
   end
 
+  def retirar_interesse
+    p 'Insira Id da aposta que deseja retirar interesse'
+    id = gets.chomp
+    if @betEss.existEvento(id.to_i)
+    then
+      if @betEss.retiraInteresse(id, @bookie)
+        p "retirado o interese"
+
+      else
+        p 'Aposta fechada'
+      end
+    end
+
+  end
 
   def registar_interesse
     p 'Insira Id da aposta que deseja registar interesse'

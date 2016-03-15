@@ -19,10 +19,13 @@ class Bookie < User
   end
 
   def addInteresse(id)
-    p" entrou em addInteresse no bookie"
     @eventos_interesse.add(id)
 
 
+  end
+
+  def delInteresse(id)
+    @eventos_interesse.delete(id)
   end
 
   def semEventosCriados?
