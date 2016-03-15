@@ -120,9 +120,7 @@ class MenuBookie
     eventos.each do |evento|
       if evento.estado
         if !@bookie.eventos_criados.empty?
-
-          if !@bookie.eventos_criados.include?(evento.id)
-
+          if !@bookie.eventos_criados.include?(evento.id) and !@bookie.eventos_interesse.include?(evento.id)
             p "#{evento.to_s}"
           end
         else

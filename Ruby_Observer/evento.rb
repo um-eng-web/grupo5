@@ -48,21 +48,26 @@ class Evento
       else
         res=@nome_equipa2
     end
-    res = self.to_s + " " + res
-    notify_observers('res',res,resultado)
+    res = self.to_s_notify + " " +"RESULTADO= "+ res
+    notify_observers(@id,res,resultado)
 
 
 
   end
 
   def notify_observer_odd
-    notify_observers('odd',@id,"")
+    notify_observers_odd(@id)
   end
 
   def set_odd(odd_v,odd_e,odd_d)
     @odd= Odd.new(odd_v,odd_e,odd_d)
   end
 
+
+  def to_s_notify
+    "ID=#{@id} | #{@nome_equipa1} VS #{@nome_equipa2} Odds(#{@odd.odd_v}|#{@odd.odd_e}|#{@odd.odd_d}) Date #{@data_init}"
+
+  end
   def to_s
 
     "ID=#{@id} | #{@nome_equipa1} VS #{@nome_equipa2} Odds(#{@odd.odd_v}|#{@odd.odd_e}|#{@odd.odd_d}) Date #{@data_init} Aberta=>#{@estado} Concluida=>#{@concluida} "

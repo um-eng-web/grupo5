@@ -11,6 +11,7 @@ class Main
 
 
   attr_accessor :contador_id_evento
+  attr_accessor :betEss
 
   # método que incializa todas as variáveis e estruturas de dados necessários
   def initialize
@@ -20,8 +21,8 @@ class Main
     @betEss.registarBookie('book','123','ze')
     @betEss.registarApostador("ze","123","ze","20")
     evento= Evento.new('1',"ces","",'1.1','2.2','1.1','slb','fcp')
-
-    @betEss.addEvento(evento,book)
+    bookiee = @betEss.getUser('book')
+    @betEss.addEvento(evento,bookiee)
 
 
   end

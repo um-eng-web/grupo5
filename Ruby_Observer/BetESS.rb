@@ -79,6 +79,7 @@ class BetESS
     if @eventos[id.to_i].estado
     then
       @eventos[id.to_i].add_observer(bookie)
+      bookie.addInteresse(id)
       return true
     else
       return false

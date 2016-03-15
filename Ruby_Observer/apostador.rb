@@ -7,7 +7,7 @@ require_relative 'self_observer'
 require 'set'
 
 class Apostador < User
-
+  include SelfObserver
   #implements :SelfObserver
 
   attr_accessor :nome, :valor, :not_odd, :lista_apostas, :contador_id_aposta
@@ -66,6 +66,8 @@ class Apostador < User
 
     end
   end
+
+
 
 
   def update_odd(id_evento)
