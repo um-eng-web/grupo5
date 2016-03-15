@@ -22,9 +22,7 @@ class Main
     @betEss.registarBookie('book','123','ze')
     @betEss.registarBookie('b','123','ze')
     @betEss.registarApostador("ze","123","ze","20")
-    evento= Evento.new('1',"ces","",'1.1','2.2','1.1','slb','fcp')
-    bookiee = @betEss.getUser('book')
-    @betEss.addEvento(evento,bookiee)
+
 
 
   end
