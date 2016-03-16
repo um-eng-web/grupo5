@@ -28,7 +28,7 @@ class Evento
   end
 
   def remove_observer(o)
-    remove_observer(o)
+    delete_observer(o)
   end
 
   def set_resultado(resultado)

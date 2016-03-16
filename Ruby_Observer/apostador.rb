@@ -62,7 +62,7 @@ class Apostador < User
       apos.set_resultado(resultado)
       apos.cal_ganho
 
-      @valor += apos.ganho
+      @valor += apos.ganho.to_f
 
     end
   end
@@ -71,7 +71,7 @@ class Apostador < User
 
 
   def update_odd(id_evento)
-    @notificacoes_odd.add(id_evento)
+    @not_odd.add(id_evento)
   end
 
   def set_valor(valor)
