@@ -1,18 +1,16 @@
-
-
-
+require_relative 'odd'
 
 class Aposta
 
-  attr_reader :ganho
+  attr_reader :ganho, :id_evento, :ganho
   attr_accessor :fechada, :resultado
 
-  def initialize(id,id_equipa,escolha,valor,odd_v,odd_e,odd_d,data)
+  def initialize(id, id_evento, escolha, valor, odd_v, odd_e, odd_d, data)
     @id=id
-    @id_equipa=id_equipa
+    @id_evento=id_evento
     @escolha=escolha
     @valor = valor
-    @odd = Odd.new(odd_v,odd_e,odd_d)
+    @odd = Odd.new(odd_v, odd_e, odd_d)
     @data=data
     @resultado
     @fechada = false
@@ -23,16 +21,12 @@ class Aposta
     @id
   end
 
-  def get_id_evento
-    @id_equipa
+  def self.get_id_evento
+    id_evento
   end
 
   def set_fechada
     @fechada = true
-  end
-
-  def get_fechada
-    @fechada
   end
 
   def set_valor(v)
@@ -55,34 +49,26 @@ class Aposta
     @resultado = res
   end
 
-  def get_ganho
-    @ganho
-  end
-
   def cal_ganho
 
-    case @resultado
-      when 1 then if @resultado==@escolha
-                    @ganho=@valor* @odd.odd_v
-                  end
-      when 2 then if @resultado==@escolha
-                      @ganho=@valor* @odd.odd_d
-                  end
-      when 0 then if @resultado==@escolha
-                    @ganho=@valor* @odd.odd_e
-                  end
+
+    case @resultado.to_i
+      when 1 then
+        if @resultado==@escolha
+          @ganho=@valor.to_f* @odd.odd_v.to_f
+        end
+      when 2 then
+        if @resultado==@escolha
+          @ganho=@valor.to_f* @odd.odd_d.to_f
+        end
+      when 0 then
+        if @resultado==@escolha
+          @ganho=@valor.to_f* @odd.odd_e.to_f
+        end
     end
   end
 
 
-
-
 end
-=begin
-time = Time.new
-apos= Aposta.new(1,1,1,10.33,2.2,3.3,0.2,time)
-p apos.fechada
-apos.fechada =true
-p apos.fechada
-=end
+
 

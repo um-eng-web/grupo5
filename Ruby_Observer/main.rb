@@ -1,17 +1,28 @@
 require_relative 'bookie'
+require_relative 'BetESS'
+require_relative 'Menu_Bookie'
+require_relative 'Menu_Admin'
+require_relative 'Menu_Apostador'
 
 current_folder = File.expand_path('../', __FILE__) # get absolute directory
 Dir['#{current_folder}/**/*.rb'].each { |f| require f }
 
 class Main
 
-  attr_accessor :utilizadores
+
   attr_accessor :contador_id_evento
+  attr_accessor :bet_ess
 
   # método que incializa todas as variáveis e estruturas de dados necessários
   def initialize
-    @utilizadores = Hash.new
-    @contador_id_evento = 0
+    @bet_ess = BetESS.new
+    @bet_ess.registar_admin('admin', 'pass', 'zeArtolas')
+    book = Bookie.new('book', '123', 'ze')
+    # book2 = Bookie.new('b','123','ze')
+    @bet_ess.registar_bookie('book', '123', 'ze')
+    @bet_ess.registar_bookie('b', '123', 'ze')
+    @bet_ess.registar_apostador("ze", "123", "ze", "20")
+
 
   end
 
@@ -61,13 +72,14 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @utilizadores.key?(email)
-      bookie = @utilizadores[email]
-      if bookie.is_a?(Bookie)
-        puts 'ok'
-        MenuBookie.start
+
+    if @bet_ess.exist_user(email)
+      bookie = @bet_ess.get_user(email)
+      if bookie.is_a?(Bookie) and bookie.password==pass
+        menu_bookie= MenuBookie.new(bookie, @bet_ess)
+        menu_bookie.start
       else
-        puts 'not ok'
+        puts 'sem autorização'
       end
     else
       puts 'Não está registado'
@@ -80,12 +92,14 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @utilizadores.key?(email)
-      apostador = @utilizadores[email]
-      if apostador.is_a?(Apostador)
-        puts 'ok'
+    if @bet_ess.exist_user(email)
+      apostador = @bet_ess.get_user(email)
+      if apostador.is_a?(Apostador) and apostador.password==pass
+        m_apostador= MenuApostador.new(apostador, @bet_ess)
+        m_apostador.start
+
       else
-        puts 'not ok'
+        puts 'Sem autorização'
       end
     else
       puts 'Não está registado'
@@ -98,12 +112,13 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @utilizadores.key?(email)
-      admin = @utilizadores[email]
-      if admin.is_a?(Admin)
-        puts 'ok'
+    if @bet_ess.exist_user(email)
+      admin = @bet_ess.get_user(email)
+      if admin.is_a?(Admin) and admin.password==pass
+        menu_admin= Menu_Admin.new(admin, @bet_ess)
+        menu_admin.start
       else
-        puts 'not ok'
+        puts 'sem autorização'
       end
     else
       puts 'Não está registado'
@@ -112,7 +127,7 @@ class Main
 
   # método que imprime todos os utilizadores do sistema
   def print_utilzadores
-    @utilizadores.each { |k, v| puts ' chave #{k}, Valor #{v.getNome}' }
+    @utilizadores.each { |k, v| puts " chave #{k}, Valor #{v.getNome}" }
   end
 
   # método que regista um apostador
@@ -127,10 +142,9 @@ class Main
     p 'Insira uma palavra passe'
     pass = gets.chomp
     p 'Insira a quantia para as apostas'
-    valor = gets.chomp
-    apos = Apostador.new(email, pass, nome, valor)
-    @utilizadores[apos.get_email]=apos
-    #print_utilzadores
+    valor = gets.chomp.to_f
+    @bet_ess.registar_apostador(email, pass, nome, valor)
+
   end
 
   # método que incrementa o id de um dado evento
@@ -147,17 +161,8 @@ class Main
 end
 
 
-#=begin
 menu = Main.new
-book = Bookie.new('raul','123','raul@g.com')
-#book= Bookie.new('raul','123','raul@g.com')
-menu.utilizadores[book.get_email]=book
-
 menu.menu_principal
 
 
-=begin
-menu.menu_registar_apostador
 
-menu.print_utilzadores
-=end

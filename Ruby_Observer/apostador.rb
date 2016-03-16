@@ -1,33 +1,27 @@
-require_relative  'user'
-#require 'hash'
-#require 'set'
+require_relative 'user'
+require_relative 'aposta'
+require_relative 'evento'
+require 'time'
+require_relative 'self_observer'
+
+require 'set'
 
 class Apostador < User
+  include SelfObserver
+  #implements :SelfObserver
 
-  #implements :Observer
+  attr_accessor :nome, :valor, :not_odd, :lista_apostas, :contador_id_aposta
 
-  def initialize(email,password,nome,valor)
-    super(email,password,nome)
+  def initialize(email, password, nome, valor)
+    super(email, password, nome)
     @valor=valor
     @contador_id_aposta = 0
     @lista_apostas = Hash.new
-    @notificacoes_odd = Set.new
-  end
-
-  def get_valor
-    @valor
-  end
-
-  def set_valor(v)
-    @valor = v
+    @not_odd = Set.new
   end
 
   def add_contador_aposta
     @contador_id_aposta += 1
-  end
-
-  def get_contador_aposta
-    @contador_id_aposta
   end
 
   #def add_aposta(id_aposta,aposta)
@@ -36,35 +30,49 @@ class Apostador < User
     add_contador_aposta
   end
 
-  #def contains_event(id)
-
-  #def get_apostas_by_id_event(evento)
-
-  def get_ganho_aposta(aposta)
-    aposta.get_ganho
+  def contains_event(id)
+    flag = false
+    @lista_apostas.keys.each do |id_aposta|
+      flag = true if id_aposta.eql?(id)
+    end
+    return flag
   end
 
-  def get_listas_apostas
-    @lista_apostas
+  def get_apostas_by_id_event(evento)
+    apostas = Set.new
+    @lista_apostas.keys.each do |id_aposta|
+      apostas.add(@lista_apostas[id_aposta]) if id_aposta.eql?(evento)
+    end
+    return apostas
   end
 
-  #def set_resultado_aposta(id_aposta,resultado_aposta)
-
-  def get_notificacoes_odd
-    @notificacoes_odd
+  def set_resultado_aposta(id_aposta, resultado_aposta)
+    @lista_apostas[id_aposta].set_resultado(resultado_aposta)
+    @lista_apostas[id_aposta].cal_ganho
   end
 
-  def set_notificacoes_odd(id_evento)
-    @notificacoes_odd.add(id_evento)
+  def limpa_noficacoes_odd
+    @not_odd = Set.new
   end
 
-  def limpa_notificacoes_odd
-    @notificacoes_odd = Set.new
+  def update(id, info, resultado)
+
+    self.get_apostas_by_id_event(id.to_i).each do |apos|
+      apos.set_fechada
+      apos.set_resultado(resultado)
+      apos.cal_ganho
+
+      @valor += apos.ganho.to_f
+
+    end
   end
 
-  #def update(id_evento,evento,resultado)
 
   def update_odd(id_evento)
-    @notificacoes_odd.add(id_evento)
+    @not_odd.add(id_evento)
+  end
+
+  def set_valor(valor)
+    @valor = valor
   end
 end
