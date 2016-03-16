@@ -52,10 +52,7 @@ class Aposta
   end
 
   def cal_ganho
-    p' entrou no cal ganho'
-    p"resultado = #{@resultado}"
-    p"escolha = #{@escolha}"
-    p"valor = #{@valor}"
+
 
     case @resultado.to_i
       when 1 then if @resultado==@escolha
