@@ -51,7 +51,7 @@ class Apostador < User
     @lista_apostas[id_aposta].cal_ganho
   end
 
-  def limpaNoficacoesOdd
+  def limpa_noficacoes_odd
     @not_odd = Set.new
   end
 
@@ -68,8 +68,6 @@ class Apostador < User
   end
 
 
-
-
   def update_odd(id_evento)
     @not_odd.add(id_evento)
   end
@@ -78,26 +76,3 @@ class Apostador < User
     @valor = valor
   end
 end
-
-
-#begin
-#tapostador = Apostador.new("toni@gmail.com",1234,"antonio",120)
-#time = Time.new
-#ev = Evento.new(0,'123',time,1,1,1,'slb','fcp')
-
-#taposta = Aposta.new(0,0,1,12,1,1,1,'1999-12-22 12:12:12')
-
-#tapostador.add_aposta(taposta)
-
-#tapostador.set_resultado_aposta(0,2)
-
-#tapostador.update(0,'benfica ganhou',1)
-
-#p tapostador.valor
-
-#p tapostador.get_apostas_by_id_event(0)
-
-#a = tapostador.contains_event(0)
-
-#puts(a)
-#end

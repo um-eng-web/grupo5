@@ -6,8 +6,8 @@ require 'time'
 
 class MenuBookie
 
-  def initialize(bookie, betEss)
-    @betEss=betEss
+  def initialize(bookie, bet_ess)
+    @bet_ess=bet_ess
     @bookie=bookie
     @flag = true
   end
@@ -81,7 +81,7 @@ class MenuBookie
     p 'Odd para o empate'
     empate = gets.chomp.to_f
     evento = Evento.new(1, des, time, odd1, odd2, empate, eq1, eq2)
-    @betEss.addEvento(evento, @bookie)
+    @bet_ess.add_evento(evento, @bookie)
 
     #p "Evento = #{evento.data_init}, mais #{evento.descricao} mais #{evento.estado}"
 
@@ -100,7 +100,7 @@ class MenuBookie
       odd2 = gets.chomp.to_f
       p 'Odd para o empate'
       empate = gets.chomp.to_f
-      @betEss.setOddEvento(id, odd1, empate, odd2)
+      @bet_ess.set_odd_evento(id, odd1, empate, odd2)
     else
       p 'Não tem permissões para alterar'
     end
@@ -109,9 +109,9 @@ class MenuBookie
   def retirar_interesse
     p 'Insira Id da aposta que deseja retirar interesse'
     id = gets.chomp
-    if @betEss.existEvento(id.to_i)
+    if @bet_ess.exist_evento(id.to_i)
     then
-      if @betEss.retiraInteresse(id, @bookie)
+      if @bet_ess.retira_interesse(id, @bookie)
         p "retirado o interese"
 
       else
@@ -124,9 +124,9 @@ class MenuBookie
   def registar_interesse
     p 'Insira Id da aposta que deseja registar interesse'
     id = gets.chomp
-    if @betEss.existEvento(id.to_i)
+    if @bet_ess.exist_evento(id.to_i)
     then
-      if @betEss.registaInteresse(id, @bookie)
+      if @bet_ess.regista_interesse(id, @bookie)
         p "registado o interese"
 
       else
@@ -137,18 +137,16 @@ class MenuBookie
 
 
   def listar_apostas
-    eventos = @betEss.getEventos
+    eventos = @bet_ess.get_eventos
     eventos.each do |evento|
       if evento.estado
 
 
         if !@bookie.eventos_criados.empty?
-          if !@bookie.eventos_criados.include?(evento.id.to_s) and !@bookie.eventos_interesse.include?(evento.id.to_s)
-
+          if !@bookie.eventos_criados.include?(evento.id) and !@bookie.eventos_interesse.include?(evento.id)
             p "#{evento.to_s}"
           end
         elsif !@bookie.eventos_interesse.include?(evento.id.to_s)
-
           p "#{evento.to_s}"
 
         end
@@ -165,7 +163,7 @@ class MenuBookie
     else
       p ' Novas odds nos seguintes eventos:'
       @bookie.not_odd.each do |idevento|
-        p " #{@betEss.getEventos[idevento].to_s}"
+        p " #{@bet_ess.get_eventos[idevento].to_s}"
 
       end
 
@@ -182,24 +180,9 @@ class MenuBookie
   end
 
   def limpar_nofificacoes
-    @bookie.limpaNoficacoesOdd
+    @bookie.limpa_noficacoes_odd
   end
 
 
 end
 
-=begin
-book = Bookie.new('raul', '123', 'raul@g.com')
-book2 = Bookie.new('raul2', '123', 'raul2@g.com')
-betEss = BetESS.new
-betEss.registarBookie('raul@g.com', '123', 'raul')
-betEss.registarBookie('raul2@g.com', '123', 'raul2')
-even= Evento.new(0, "des", "1999-12-22 12:12:12", 1.1, 2.2, 1.1, "slb", "fcp")
-even2= Evento.new(1, "des", "1999-12-22 12:12:12", 1.1, 2.2, 1.1, "zero", "um")
-betEss.addEvento(even, book)
-betEss.addEvento(even2, book2)
-
-book.update(0,"odd")
-menu = MenuBookie.new(book, betEss)
-menu.start
-=end

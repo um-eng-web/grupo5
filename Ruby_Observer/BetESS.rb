@@ -11,16 +11,16 @@ class BetESS
     @eventos = Hash.new
   end
 
-  def existUser(email)
+  def exist_user(email)
     (@users[email]) ? true : false
   end
 
-  def getUser(email)
+  def get_user(email)
     @users[email]
   end
 
 
-  def registarBookie(email, password, nome)
+  def registar_bookie(email, password, nome)
     return nil if @users[email]
     bookie = Bookie.new(nome, password, email)
     @users[email] = bookie
@@ -28,30 +28,30 @@ class BetESS
   end
 
 
-  def registarAdmin(email, password, nome)
+  def registar_admin(email, password, nome)
     admin = Admin.new(nome, password, email)
     @users[email] = admin
 
 
   end
 
-  def registarApostador(email, password, nome, valor)
+  def registar_apostador(email, password, nome, valor)
     apos = Apostador.new(nome, password, email, valor)
     @users[email] = apos
   end
 
 
-  def fechaEvento(id)
+  def fecha_evento(id)
     @eventos[id.to_i].estado=false
   end
 
-  def concluirEvento(id, resultado)
+  def concluir_evento(id, resultado)
     @eventos[id.to_i].set_resultado(resultado)
     @eventos[id.to_i].notify_observers_resultado(resultado)
 
   end
 
-  def addEvento(evento, bookie)
+  def add_evento(evento, bookie)
     #bookie = user = @users[bookiemail]
     if !bookie || !bookie.is_a?(Bookie)
     else
@@ -66,38 +66,38 @@ class BetESS
   end
 
 
-  def setOddEvento(id, odd_v, odd_e, odd_d)
+  def set_odd_evento(id, odd_v, odd_e, odd_d)
     @eventos[id.to_i].set_odd(odd_v, odd_e, odd_d)
     @eventos[id.to_i].notify_observer_odd
   end
 
-  def existEvento(id)
+  def exist_evento(id)
     return @eventos.include?(id.to_i)
   end
 
-  def registaInteresse(id, bookie)
+  def regista_interesse(id, bookie)
     if @eventos[id.to_i].estado
     then
       @eventos[id.to_i].add_observer(bookie)
-      bookie.addInteresse(id)
+      bookie.add_interesse(id)
       return true
     else
       return false
     end
   end
 
-  def retiraInteresse(id, bookie)
+  def retira_interesse(id, bookie)
     if @eventos[id.to_i].estado
     then
       @eventos[id.to_i].remove_observer(bookie)
-      bookie.delInteresse(id)
+      bookie.del_interesse(id)
       return true
     else
       return false
     end
   end
 
-  def getEventos
+  def get_eventos
     @eventos.values
   end
 

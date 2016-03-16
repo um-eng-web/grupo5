@@ -8,7 +8,7 @@ class Evento
   include Subject
 
   attr_reader :data_init, :descricao
-  attr_accessor :id,:estado,:concluida, :odd
+  attr_accessor :id, :estado, :concluida, :odd
 
 
   def initialize(id, descricao, data, odd1, odd2, empate, eq1, eq2)
@@ -37,20 +37,21 @@ class Evento
 
   end
 
-  # falta o método notify_observer(resultado)
+
 
   def notify_observers_resultado(resultado)
     p ' Notifica apostadores!!!'
 
     case resultado
-      when '0' then res="Empate"
-      when '1' then res=@nome_equipa1
+      when '0' then
+        res="Empate"
+      when '1' then
+        res=@nome_equipa1
       else
         res=@nome_equipa2
     end
     res = self.to_s_notify + " " +"RESULTADO= "+ res
-    notify_observers(@id,res,resultado)
-
+    notify_observers(@id, res, resultado)
 
 
   end
@@ -59,8 +60,8 @@ class Evento
     notify_observers_odd(@id)
   end
 
-  def set_odd(odd_v,odd_e,odd_d)
-    @odd= Odd.new(odd_v,odd_e,odd_d)
+  def set_odd(odd_v, odd_e, odd_d)
+    @odd= Odd.new(odd_v, odd_e, odd_d)
   end
 
 
@@ -68,6 +69,7 @@ class Evento
     "ID=#{@id} | #{@nome_equipa1} VS #{@nome_equipa2} Odds(#{@odd.odd_v}|#{@odd.odd_e}|#{@odd.odd_d}) Date #{@data_init}"
 
   end
+
   def to_s
 
     "ID=#{@id} | #{@nome_equipa1} VS #{@nome_equipa2} Odds(#{@odd.odd_v}|#{@odd.odd_e}|#{@odd.odd_d}) Date #{@data_init} Aberta=>#{@estado} Concluida=>#{@concluida} "

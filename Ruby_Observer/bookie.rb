@@ -18,17 +18,17 @@ class Bookie < User
 
   end
 
-  def addInteresse(id)
+  def add_interesse(id)
     @eventos_interesse.add(id)
 
 
   end
 
-  def delInteresse(id)
+  def del_interesse(id)
     @eventos_interesse.delete(id)
   end
 
-  def semEventosCriados?
+  def sem_eventos_criados?
     return @eventos_criados.empty?
   end
 
@@ -52,7 +52,7 @@ def update_odd(id)
   @not_odd.add(id)
 end
 
-def limpaNoficacoesOdd
+def limpa_noficacoes_odd
   @not_odd = Set.new
 end
 

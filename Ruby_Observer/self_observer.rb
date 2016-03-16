@@ -1,8 +1,8 @@
 module SelfObserver
-  def update( idEvento, evento, resultado)
-    update(idEvento,evento,resultado)
+  def update(id_evento, evento, resultado)
+    update(id_evento, evento, resultado)
   end
-  def update_odd( idEvento)
-    update_odd(idEvento)
+  def update_odd(id_evento)
+    update_odd(id_evento)
   end
 end

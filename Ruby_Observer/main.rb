@@ -11,18 +11,17 @@ class Main
 
 
   attr_accessor :contador_id_evento
-  attr_accessor :betEss
+  attr_accessor :bet_ess
 
   # método que incializa todas as variáveis e estruturas de dados necessários
   def initialize
-    @betEss = BetESS.new
-    @betEss.registarAdmin('admin', 'pass', 'zeArtolas')
-    book = Bookie.new('book','123','ze')
-   # book2 = Bookie.new('b','123','ze')
-    @betEss.registarBookie('book','123','ze')
-    @betEss.registarBookie('b','123','ze')
-    @betEss.registarApostador("ze","123","ze","20")
-
+    @bet_ess = BetESS.new
+    @bet_ess.registar_admin('admin', 'pass', 'zeArtolas')
+    book = Bookie.new('book', '123', 'ze')
+    # book2 = Bookie.new('b','123','ze')
+    @bet_ess.registar_bookie('book', '123', 'ze')
+    @bet_ess.registar_bookie('b', '123', 'ze')
+    @bet_ess.registar_apostador("ze", "123", "ze", "20")
 
 
   end
@@ -74,11 +73,11 @@ class Main
     p 'Insira a sua palavra passe'
     pass= gets.chomp
 
-    if @betEss.existUser(email)
-      bookie = @betEss.getUser(email)
+    if @bet_ess.exist_user(email)
+      bookie = @bet_ess.get_user(email)
       if bookie.is_a?(Bookie) and bookie.password==pass
-        menuBookie= MenuBookie.new(bookie, @betEss)
-        menuBookie.start
+        menu_bookie= MenuBookie.new(bookie, @bet_ess)
+        menu_bookie.start
       else
         puts 'sem autorização'
       end
@@ -93,10 +92,10 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @betEss.existUser(email)
-      apostador = @betEss.getUser(email)
+    if @bet_ess.exist_user(email)
+      apostador = @bet_ess.get_user(email)
       if apostador.is_a?(Apostador) and apostador.password==pass
-        m_apostador= MenuApostador.new(apostador,@betEss)
+        m_apostador= MenuApostador.new(apostador, @bet_ess)
         m_apostador.start
 
       else
@@ -113,11 +112,11 @@ class Main
     email=gets.chomp
     p 'Insira a sua palavra passe'
     pass= gets.chomp
-    if @betEss.existUser(email)
-      admin = @betEss.getUser(email)
+    if @bet_ess.exist_user(email)
+      admin = @bet_ess.get_user(email)
       if admin.is_a?(Admin) and admin.password==pass
-        menuAdmin= Menu_Admin.new(admin, @betEss)
-        menuAdmin.start
+        menu_admin= Menu_Admin.new(admin, @bet_ess)
+        menu_admin.start
       else
         puts 'sem autorização'
       end
@@ -128,7 +127,7 @@ class Main
 
   # método que imprime todos os utilizadores do sistema
   def print_utilzadores
-    @utilizadores.each { |k, v| puts ' chave #{k}, Valor #{v.getNome}' }
+    @utilizadores.each { |k, v| puts " chave #{k}, Valor #{v.getNome}" }
   end
 
   # método que regista um apostador
@@ -144,7 +143,7 @@ class Main
     pass = gets.chomp
     p 'Insira a quantia para as apostas'
     valor = gets.chomp.to_f
-    @betEss.registarApostador(email, pass, nome, valor)
+    @bet_ess.registar_apostador(email, pass, nome, valor)
 
   end
 
@@ -162,19 +161,8 @@ class Main
 end
 
 
-#=begin
 menu = Main.new
-#book = Bookie.new('raul','123','raul@g.com')
-#book= Bookie.new('raul','123','raul@g.com')
-#menu.utilizadores[book.get_email]=book
-#betEss= BetESS.new
-#betEss.registarAdmin('admin@g.com', 'pass', 'zeArtolas')
-#p "#{betEss.existUser('admin@g.com')}"
 menu.menu_principal
 
 
-=begin
-menu.menu_registar_apostador
 
-menu.print_utilzadores
-=end

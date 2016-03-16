@@ -1,5 +1,3 @@
-
-
 require_relative 'odd'
 
 class Aposta
@@ -7,12 +5,12 @@ class Aposta
   attr_reader :ganho, :id_evento, :ganho
   attr_accessor :fechada, :resultado
 
-  def initialize(id,id_evento,escolha,valor,odd_v,odd_e,odd_d,data)
+  def initialize(id, id_evento, escolha, valor, odd_v, odd_e, odd_d, data)
     @id=id
     @id_evento=id_evento
     @escolha=escolha
     @valor = valor
-    @odd = Odd.new(odd_v,odd_e,odd_d)
+    @odd = Odd.new(odd_v, odd_e, odd_d)
     @data=data
     @resultado
     @fechada = false
@@ -55,27 +53,22 @@ class Aposta
 
 
     case @resultado.to_i
-      when 1 then if @resultado==@escolha
-                    @ganho=@valor.to_f* @odd.odd_v.to_f
-                  end
-      when 2 then if @resultado==@escolha
-                      @ganho=@valor.to_f* @odd.odd_d.to_f
-                  end
-      when 0 then if @resultado==@escolha
-                    @ganho=@valor.to_f* @odd.odd_e.to_f
-                  end
+      when 1 then
+        if @resultado==@escolha
+          @ganho=@valor.to_f* @odd.odd_v.to_f
+        end
+      when 2 then
+        if @resultado==@escolha
+          @ganho=@valor.to_f* @odd.odd_d.to_f
+        end
+      when 0 then
+        if @resultado==@escolha
+          @ganho=@valor.to_f* @odd.odd_e.to_f
+        end
     end
   end
 
 
-
-
 end
-=begin
-time = Time.new
-apos= Aposta.new(1,1,1,10.33,2.2,3.3,0.2,time)
-p apos.fechada
-apos.fechada =true
-p apos.fechada
-=end
+
 

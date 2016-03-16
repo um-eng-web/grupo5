@@ -7,8 +7,8 @@ require 'time'
 
 class MenuApostador
 
-  def initialize(apostador, betEss)
-    @betEss=betEss
+  def initialize(apostador, bet_ess)
+    @bet_ess=bet_ess
     @apostador=apostador
     @flag = true
   end
@@ -16,7 +16,7 @@ class MenuApostador
   def start
     while @flag do
       p '************************************************'
-      p '*                  APOSTADOR ' + "#{@apostador.nome}" +                 '              *'
+      p '*                  APOSTADOR ' + "#{@apostador.nome}" + '              *'
       p '************************************************'
       p 'Escolha a opção'
       p '1-Listar Apostas'
@@ -56,7 +56,7 @@ class MenuApostador
   end
 
   def listar_apostas
-    eventos = @betEss.getEventos
+    eventos = @bet_ess.get_eventos
     eventos.each do |evento|
       if evento.estado
         p "#{evento.to_s}"
@@ -67,7 +67,7 @@ class MenuApostador
   def fazer_aposta
     p 'Id da aposta'
     id = gets.chomp.to_i
-    if @betEss.existEvento(id)
+    if @bet_ess.exist_evento(id)
       p 'Qual o resultado a apostar:'
       p '0 - Empate'
       p '1 - Equipa 1'
@@ -79,9 +79,8 @@ class MenuApostador
         p 'Não tem valor disponível para essa aposta'
       else
         @apostador.set_valor(@apostador.valor.to_f - valor)
-      #  p" add observer ao evento = #{ @betEss.getEventos[id].descricao}"
-        @betEss.getEventos[id].add_observer(@apostador)
-        ap = Aposta.new(@apostador.contador_id_aposta,id,aposta,valor,@betEss.getEventos[id].odd.odd_v,@betEss.getEventos[id].odd.odd_d,@betEss.getEventos[id].odd.odd_e,nil)
+        @bet_ess.get_eventos[id].add_observer(@apostador)
+        ap = Aposta.new(@apostador.contador_id_aposta, id, aposta, valor, @bet_ess.get_eventos[id].odd.odd_v, @bet_ess.get_eventos[id].odd.odd_d, @bet_ess.get_eventos[id].odd.odd_e, nil)
         @apostador.add_aposta(ap)
         p 'Registado'
       end
@@ -110,7 +109,7 @@ class MenuApostador
     else
       p ' Novas odds nos seguintes eventos:'
       @apostador.not_odd.each do |idevento|
-        p" #{@betEss.getEventos[idevento].to_s}"
+        p " #{@bet_ess.get_eventos[idevento].to_s}"
 
       end
 
@@ -118,21 +117,8 @@ class MenuApostador
   end
 
   def limpar_nofificacoes
-    @apostador.limpaNoficacoesOdd
+    @apostador.limpa_noficacoes_odd
   end
 
 end
 
-#begin
-#  book = Bookie.new('raul', '123', 'raul@g.com')
-#apos = Apostador.new('qwe@gmail.com',123,'tone',123)
-#time = Time.new
-#aposta = Aposta.new(1,1,1,10.33,2.2,3.3,0.2,time)
-#bet_ess = BetESS.new
-#  bet_ess.registarBookie('raul@g.com', '123', 'raul')
-#bet_ess.registarApostador('qwe@gmail.com',123,'tone',123)
-#  even= Evento.new(0, "des", "1999-12-22 12:12:12", 1.1, 2.2, 1.1, "slb", "fcp")
-#  bet_ess.addEvento(even, book)
-#menu = MenuApostador.new(apos, bet_ess)
-#menu.start
-#end
